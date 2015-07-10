@@ -1,4 +1,12 @@
+#html2IDOM
+
 Convert a string of HTML into an [Incremental DOM](https://github.com/google/incremental-dom) render.
+
+##Installation
+
+```
+npm install html2IDOM
+```
 
 ##Usage
 
