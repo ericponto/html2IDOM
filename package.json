@@ -1,8 +1,8 @@
 {
   "name": "html2idom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "parse a string of html into incremental dom",
-  "main": "html2IDOM.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,7 @@
     "test": "test"
   },
   "dependencies": {
+    "html-parse-stringify": "^1.0.2",
     "htmlparser2": "^3.8.3",
     "incremental-dom": "^0.1.0"
   },

@@ -4,8 +4,15 @@ var IncrementalDOM = require("incremental-dom");
 var elementOpen = IncrementalDOM.elementOpen;
 var elementClose = IncrementalDOM.elementClose;
 var text = IncrementalDOM.text;
+var patch = IncrementalDOM.patch;
 
-module.exports = function html2idom(html) {
+
+/**
+ * build IDOM for ast node
+ * @private
+ * @param {Object} node - An AST node to render
+ */
+function renderToIDom(html) {
 	var parser = new Parser({
 		onopentag: function (name, attribs) {
 			var attribsArray = [];
@@ -25,3 +32,19 @@ module.exports = function html2idom(html) {
 	parser.write(html);
 	parser.end();
 };
+
+/**
+ * apply the HTML to an element via Incremental DOM's `patch`
+ * @param {Element} el - The element to apply the patch to
+ * @param {String} html - A string of HTML
+ */
+function patchHTML(el, html) {
+	patch(el, function() {
+		return renderToIDom(html);
+	});
+}
+
+module.exports = {
+	renderToIDom: renderToIDom,
+	patchHTML: patchHTML
+}
