@@ -1,5 +1,5 @@
 {
-  "name": "html2IDOM",
+  "name": "html2idom",
   "version": "0.0.1",
   "description": "parse a string of html into incremental dom",
   "main": "html2IDOM.js",
