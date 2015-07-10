@@ -1,0 +1,26 @@
+{
+  "name": "html2IDOM",
+  "version": "0.0.1",
+  "description": "parse a string of html into incremental dom",
+  "main": "html2IDOM.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "eric.ponto@gmail.com",
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "htmlparser2": "^3.8.3",
+    "incremental-dom": "^0.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ericponto/html2IDOM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ericponto/html2IDOM/issues"
+  },
+  "homepage": "https://github.com/ericponto/html2IDOM"
+}
