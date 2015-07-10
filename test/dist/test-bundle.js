@@ -4987,7 +4987,7 @@ var elementOpen = IncrementalDOM.elementOpen;
 var elementClose = IncrementalDOM.elementClose;
 var text = IncrementalDOM.text;
 
-module.exports = function html2IDOM(html) {
+module.exports = function html2idom(html) {
 	var parser = new Parser({
 		onopentag: function (name, attribs) {
 			var attribsArray = [];
@@ -8885,11 +8885,11 @@ module.exports = {
 
 
 },{}],70:[function(require,module,exports){
-var html2IDOM = require("../html2idom");
+var html2idom = require("../html2idom");
 var patch = require("incremental-dom").patch;
 
 function render() {
-	return html2IDOM("<h1 class='hi'>Hello, Incremental DOM</h1>");
+	return html2idom("<h1 class='hi'>Hello, Incremental DOM</h1>");
 }
 
 patch(document.querySelector("#test"), render);

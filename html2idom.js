@@ -5,7 +5,7 @@ var elementOpen = IncrementalDOM.elementOpen;
 var elementClose = IncrementalDOM.elementClose;
 var text = IncrementalDOM.text;
 
-module.exports = function html2IDOM(html) {
+module.exports = function html2idom(html) {
 	var parser = new Parser({
 		onopentag: function (name, attribs) {
 			var attribsArray = [];
