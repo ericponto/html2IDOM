@@ -2,6 +2,8 @@
 
 Convert a string of HTML into an [Incremental DOM](https://github.com/google/incremental-dom) render.
 
+HTML parsing done by [htmlparser2](https://github.com/fb55/htmlparser2).
+
 ##Installation
 
 ```
