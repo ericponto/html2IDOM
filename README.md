@@ -11,7 +11,7 @@ npm install html2idom
 ##Usage
 
 ```
-var html2IDOM = require("html2IDOM");
+var html2IDOM = require("html2idom");
 var patch = require("incremental-dom").patch;
 
 // get you view's el

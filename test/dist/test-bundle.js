@@ -8885,7 +8885,7 @@ module.exports = {
 
 
 },{}],70:[function(require,module,exports){
-var html2IDOM = require("../html2IDOM");
+var html2IDOM = require("../html2idom");
 var patch = require("incremental-dom").patch;
 
 function render() {
@@ -8893,4 +8893,4 @@ function render() {
 }
 
 patch(document.querySelector("#test"), render);
-},{"../html2IDOM":25,"incremental-dom":60}]},{},[70]);
+},{"../html2idom":25,"incremental-dom":60}]},{},[70]);
