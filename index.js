@@ -1,59 +1,36 @@
-var parse = require("html-parse-stringify").parse;
+var Parser = require("htmlparser2").Parser;
 var IncrementalDOM = require("incremental-dom");
 
 var elementOpen = IncrementalDOM.elementOpen;
 var elementClose = IncrementalDOM.elementClose;
-var elementVoid = IncrementalDOM.elementVoid;
 var text = IncrementalDOM.text;
 var patch = IncrementalDOM.patch;
+
 
 /**
  * build IDOM for ast node
  * @private
  * @param {Object} node - An AST node to render
  */
-function renderAstNode(node) {
-	if (node.type == "text") {
-		text(node.content);
-	}
-	
-	if (node.type == "tag") {
-		var attribsArray = [];
-			
-		// convert attribs object into a flat array
-		for (var attr in node.attrs) {
-			attribsArray.push(attr);
-			attribsArray.push(node.attrs[attr]);
-		}
-		
-		var argsArray = [node.name, null, null].concat(attribsArray);
-		
-		if (node.voidElement) {
-			elementVoid.apply(null, argsArray);
-		} else {
-			elementOpen.apply(null, argsArray);
-			
-			node.children.forEach(function(child) {
-				renderAstNode(child);
-			});
-		
-			elementClose(node.name);
-		}
-	}
-}
-
-/**
- * render function for IDOM that takes a string of HTML
- * @param {String} html - The string of HTML to render
- */
 function renderToIDom(html) {
-	var ast = parse(html);
+	var parser = new Parser({
+		onopentag: function (name, attrs) {
+			var argsArray = [name, null, null];
+			
+			// convert attribs object into a flat array
+			for (var attr in attrs) {
+				argsArray.push(attr);
+				argsArray.push(attrs[attr]);
+			}
+			
+			elementOpen.apply(null, argsArray);
+		},
+		ontext: text,
+		onclosetag: elementClose
+	}, {decodeEntities: true});
 	
-	if (Array.isArray(ast)) {
-		ast.forEach(renderAstNode);
-	} else {
-		renderAstNode(ast);
-	}
+	parser.write(html);
+	parser.end();
 };
 
 /**

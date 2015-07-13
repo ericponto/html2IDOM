@@ -4,7 +4,7 @@
   "description": "parse a string of html into incremental dom",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-tests": "browserify test/test.js -o test/dist/test.js && browserify test/test-light.js -o test/dist/test-light.js"
   },
   "author": "eric.ponto@gmail.com",
   "license": "ISC",
