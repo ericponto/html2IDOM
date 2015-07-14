@@ -4988,6 +4988,21 @@ var elementClose = IncrementalDOM.elementClose;
 var text = IncrementalDOM.text;
 var patch = IncrementalDOM.patch;
 
+/** Parser with callbacks that invoke Incremental DOM */
+var parser = new Parser({
+	onopentag: function (name, attrs) {
+		var argsArray = [name, null, null];
+		
+		// convert attribs object into a flat array
+		for (var attr in attrs) {
+			argsArray.push(attr, attrs[attr]);
+		}
+		
+		elementOpen.apply(null, argsArray);
+	},
+	ontext: text,
+	onclosetag: elementClose
+}, {decodeEntities: true});
 
 /**
  * build IDOM for ast node
@@ -4995,22 +5010,6 @@ var patch = IncrementalDOM.patch;
  * @param {Object} node - An AST node to render
  */
 function renderToIDom(html) {
-	var parser = new Parser({
-		onopentag: function (name, attrs) {
-			var argsArray = [name, null, null];
-			
-			// convert attribs object into a flat array
-			for (var attr in attrs) {
-				argsArray.push(attr);
-				argsArray.push(attrs[attr]);
-			}
-			
-			elementOpen.apply(null, argsArray);
-		},
-		ontext: text,
-		onclosetag: elementClose
-	}, {decodeEntities: true});
-	
 	parser.write(html);
 	parser.end();
 };
