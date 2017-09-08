@@ -1,6 +1,6 @@
 {
   "name": "html2idom",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "parse a string of html into incremental dom",
   "main": "index.js",
   "scripts": {
